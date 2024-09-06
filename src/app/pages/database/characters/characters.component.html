@@ -1,0 +1,73 @@
+<div class="uk-grid uk-grid-small" data-uk-grid uk-sortable="handle: .sortable-icon">
+  <div class="uk-width-1-1">
+    <div class="uk-card uk-card-default uk-card-small">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small uk-flex-between">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="users" class="uk-margin-small-right"></i-feather>
+              Personnages <span *ngIf="totalCharacters" class="uk-text-small uk-text-muted">({{ totalCharacters }})</span>
+            </h4>
+          </div>
+          <div>
+            <form class="uk-search uk-search-default">
+              <span uk-search-icon></span>
+              <input class="uk-search-input" type="search" name="search" placeholder="Rechercher" aria-label="Rechercher" [(ngModel)]="characterSearch">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="characters" [columns]="characterColumns" (totalItemsEvent)="totalCharacters = $event" [searchValue]="characterSearch"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-width-1-2@m uk-width-1-1@s">
+    <div class="uk-card uk-card-default uk-card-small">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small uk-flex-between">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="book" class="uk-margin-small-right"></i-feather>
+              Races <span *ngIf="totalRaces" class="uk-text-small uk-text-muted">({{ totalRaces }})</span>
+            </h4>
+          </div>
+          <div>
+            <form class="uk-search uk-search-default">
+              <span uk-search-icon></span>
+              <input class="uk-search-input" type="search" name="search" placeholder="Rechercher" aria-label="Rechercher" [(ngModel)]="raceSearch">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="character_races" [columns]="racesColumns" (totalItemsEvent)="totalRaces = $event" [searchValue]="raceSearch"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-width-1-2@m uk-width-1-1@s">
+    <div class="uk-card uk-card-default uk-card-small">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small uk-flex-between">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="book" class="uk-margin-small-right"></i-feather>
+              Classes <span *ngIf="totalClasses" class="uk-text-small uk-text-muted">({{ totalClasses }})</span>
+            </h4>
+          </div>
+          <div>
+            <form class="uk-search uk-search-default">
+              <span uk-search-icon></span>
+              <input class="uk-search-input" type="search" name="search" placeholder="Rechercher" aria-label="Rechercher" [(ngModel)]="classSearch">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="character_classes" [columns]="classesColumns" (totalItemsEvent)="totalClasses = $event" [searchValue]="classSearch"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+</div>

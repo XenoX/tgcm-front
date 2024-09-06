@@ -1,0 +1,88 @@
+<table class="uk-table" [ngClass]="this.tableClasses">
+  <thead>
+  <tr>
+    <th
+      *ngFor="let column of columns"
+      (click)="this.sortable && column.sortable && sort(column.key)"
+      [ngStyle]="{'cursor': this.sortable && column.sortable ? 'pointer' : 'auto'}"
+      hidden="{{ column.hidden }}"
+    >
+      {{ column.label }}
+      @if (this.sortable && column.sortable) {
+        <i-feather
+          name="{{ column.key === this.orderBy && this.orderDirection === OrderDirection.Ascendant ? 'chevron-up' : 'chevron-down' }}"
+          [ngStyle]="{
+            'stroke-width': column.key === this.orderBy ? '2px' : '1px',
+            'color': column.key === this.orderBy ? '#777' : '#ccc'
+          }"
+        ></i-feather>
+      }
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+    @if (rowCount === undefined && !isError) { <!-- Skeleton placeholder -->
+      <tr *ngFor="let i of Array.from(Array(5).keys())">
+        <td *ngFor="let column of columns">
+          <app-skeleton-loader width="50%"></app-skeleton-loader>
+        </td>
+      </tr>
+    } @else if (isError) {  <!-- Request Error -->
+      <tr>
+        <td colSpan="{{ columns.length }}" class="uk-text-center uk-text-warning">Erreur lors de la récupération des données</td>
+      </tr>
+    } @else if (rowCount === 0) {  <!-- No data -->
+      <tr>
+        <td colSpan="{{ columns.length }}" class="uk-text-center uk-text-muted">Aucune donnée disponible</td>
+      </tr>
+    } @else {  <!-- Print data -->
+      <tr *ngFor="let item of data">
+        <td *ngFor="let column of columns" class="{{ column.classes }}" hidden="{{ column.hidden }}">
+          @if (column.link) {
+            <a href="{{ getCellValue(item, column.link) }}">{{ getCellValue(item, column.key) }}</a>
+          } @else {
+            {{ getCellValue(item, column.key) }}
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+@if (!isError && hydraView && hydraView['hydra:first']) {
+  <nav class="uk-margin-top" aria-label="Pagination">
+    <ul class="uk-pagination uk-flex-center">
+      <li *ngIf="hydraView['hydra:previous']">
+        <a (click)="pagination(hydraView['hydra:previous']!, page - 1)"><i-feather name="chevron-left"></i-feather></a>
+      </li>
+
+      <li *ngIf="page > 2 && hydraView!['hydra:first']">
+        <a (click)="pagination(hydraView!['hydra:first']!, 1)">1</a>
+      </li>
+
+      <li class="uk-disabled" *ngIf="page > 3"><span>…</span></li>
+
+      <li *ngIf="hydraView!['hydra:previous']">
+        <a (click)="pagination(hydraView!['hydra:previous']!, page - 1)">{{ page - 1 }}</a>
+      </li>
+
+      <li class="uk-active"><span aria-current="page">{{ page }}</span></li>
+
+      <li *ngIf="hydraView!['hydra:next']">
+        <a (click)="pagination(hydraView!['hydra:next']!, page + 1)">{{ page + 1 }}</a>
+      </li>
+
+      <li class="uk-disabled" *ngIf="Number(Math.ceil(totalItems / itemsPerPage)) > page + 2"><span>…</span></li>
+
+      <li *ngIf="hydraView!['hydra:last'] && hydraView!['hydra:next'] && hydraView!['hydra:next'] !== hydraView!['hydra:last']">
+        <a (click)="pagination(hydraView!['hydra:last']!, Number(Math.ceil(totalItems / itemsPerPage)))">
+          {{ Number(Math.ceil(totalItems / itemsPerPage)) }}
+        </a>
+      </li>
+
+      <li *ngIf="hydraView!['hydra:next']">
+        <a (click)="pagination(hydraView!['hydra:next']!, page + 1)"><i-feather name="chevron-right"></i-feather></a>
+      </li>
+    </ul>
+  </nav>
+}
