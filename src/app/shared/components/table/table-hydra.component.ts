@@ -69,7 +69,9 @@ export class TableHydraComponent implements OnInit, OnChanges {
       distinctUntilChanged()
     ).subscribe({
       next: (searchValue) => {
-        this.fetchData(undefined, searchValue);
+        if (this.searchValue) {
+          this.fetchData(undefined, searchValue);
+        }
       }
     });
   }
@@ -90,10 +92,10 @@ export class TableHydraComponent implements OnInit, OnChanges {
   }
 
   fetchData(uri?: string, searchValue?: string, page?: number) {
+    uri = uri ? uri : `/${this.uri}?order[${this.orderBy}]=${this.orderDirection}&page=${page ?? this.page}&itemsPerPage=${this.itemsPerPage}`;
+
     if (searchValue) {
-      uri = uri ? uri : `/${this.uri}?order[${this.orderBy}]=${this.orderDirection}&page=${page ?? this.page}&itemsPerPage=${this.itemsPerPage}&search=${searchValue}`;
-    } else {
-      uri = uri ? uri : `/${this.uri}?order[${this.orderBy}]=${this.orderDirection}&page=${page ?? this.page}&itemsPerPage=${this.itemsPerPage}`;
+      uri += `&search=${searchValue}`;
     }
 
     this.apiService.get<HydraCollection>(uri)
