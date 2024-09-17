@@ -1,0 +1,73 @@
+<div class="uk-grid uk-grid-small" data-uk-grid uk-sortable="handle: .sortable-icon">
+  <div class="uk-width-1-1">
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small uk-flex-between">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="target" class="uk-margin-small-right"></i-feather>
+              Créatures <span *ngIf="totalMonsters" class="uk-text-small uk-text-muted">({{ totalMonsters }})</span>
+            </h4>
+          </div>
+          <div>
+            <form class="uk-search uk-search-default">
+              <span uk-search-icon></span>
+              <input class="uk-search-input" type="search" name="search" placeholder="Rechercher" aria-label="Rechercher" [(ngModel)]="monsterSearch">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="monsters" [columns]="monsterColumns" (totalItemsEvent)="totalMonsters = $event" [searchValue]="monsterSearch"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-width-1-2@m uk-width-1-1@s">
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small uk-flex-between">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="hash" class="uk-margin-small-right"></i-feather>
+              Types <span *ngIf="totalTypes" class="uk-text-small uk-text-muted">({{ totalTypes }})</span>
+            </h4>
+          </div>
+          <div>
+            <form class="uk-search uk-search-default">
+              <span uk-search-icon></span>
+              <input class="uk-search-input" type="search" name="search" placeholder="Rechercher" aria-label="Rechercher" [(ngModel)]="typeSearch">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="types" [columns]="typeColumns" (totalItemsEvent)="totalTypes = $event" [searchValue]="typeSearch"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-width-1-2@m uk-width-1-1@s">
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small uk-flex-between">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="globe" class="uk-margin-small-right"></i-feather>
+              Languages <span *ngIf="totalLanguages" class="uk-text-small uk-text-muted">({{ totalLanguages }})</span>
+            </h4>
+          </div>
+          <div>
+            <form class="uk-search uk-search-default">
+              <span uk-search-icon></span>
+              <input class="uk-search-input" type="search" name="search" placeholder="Rechercher" aria-label="Rechercher" [(ngModel)]="languageSearch">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="languages" [columns]="languageColumns" (totalItemsEvent)="totalLanguages = $event" [searchValue]="languageSearch"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+</div>

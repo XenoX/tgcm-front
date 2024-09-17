@@ -1,0 +1,111 @@
+<div class="uk-grid uk-grid-match uk-grid-medium" data-uk-grid uk-sortable="handle: .sortable-icon">
+  <div class="uk-width-1-2@l">
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small">
+            <div class="uk-width-auto">
+              <h4>
+                <i-feather name="users" class="uk-margin-small-right"></i-feather>
+                <a routerLink="/characters">Derniers Personnages</a>
+              </h4>
+            </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="characters" [columns]="characterColumns" itemsPerPage="5" sortable="false"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-width-1-2@l">
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="crosshair" class="uk-margin-small-right"></i-feather>
+              <a routerLink="/monsters">Derniers Monstres</a>
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="monsters" [columns]="monsterColumns" itemsPerPage="5" sortable="false"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-width-1-1 uk-width-1-3@l">
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="target" class="uk-margin-small-right"></i-feather>
+              Dernieres Quêtes
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="quests" [columns]="questColumns" itemsPerPage="5" sortable="false"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-width-1-2@s uk-width-1-3@l">
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="key" class="uk-margin-small-right"></i-feather>
+              Dernieres Énigmes
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="riddles" [columns]="riddleColumns" itemsPerPage="5" sortable="false"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-width-1-2@s uk-width-1-3@l">
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="music" class="uk-margin-small-right"></i-feather>
+              Dernieres Musiques
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="musics" [columns]="musicColumns" itemsPerPage="5" sortable="false"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="uk-grid uk-grid-match uk-grid-medium" data-uk-grid uk-sortable="handle: .sortable-icon">
+  <div class="uk-width-1-4@l">
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="sun" class="uk-margin-small-right"></i-feather>
+              <a routerLink="/weathers">Générateur météo</a>
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body">
+        <app-weather-generator withList="false"></app-weather-generator>
+      </div>
+    </div>
+  </div>
+</div>

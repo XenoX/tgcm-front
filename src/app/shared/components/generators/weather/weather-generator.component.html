@@ -1,0 +1,28 @@
+<div [ngClass]="{ 'uk-flex uk-flex-wrap-between': withList, 'uk-container': !withList }">
+  <div *ngIf="currentWeather" class="uk-text-center uk-margin-auto" [ngClass]="{ 'uk-width-large': withList }">
+      <h1 class="uk-heading-primary uk-text-uppercase uk-text-primary">
+        <a (click)="randomizeWeather()" class="uk-link-reset">
+          {{ currentWeather.name }}
+          <i-feather name="refresh-cw" style="height: 100%" class="uk-margin-small-left"></i-feather>
+        </a>
+      </h1>
+      <div class="uk-text-bottom">
+        <a (click)="randomizeWeather()">
+          <img src="/assets/img/meteo/{{ currentWeather.image }}" [alt]="currentWeather.name">
+        </a>
+        <p class="uk-text-italic uk-text-large">{{ currentWeather.description }}</p>
+      </div>
+  </div>
+
+  @if (withList) {
+    <div class="uk-margin-left">
+      <h3 class="uk-text-secondary uk-heading-divider">Météos disponible</h3>
+      <ul class="uk-list uk-list-muted">
+        <li *ngFor="let weather of weathers" (click)="showWeather(weather.name)" class="uk-link">
+          {{ weather.name }}
+        </li>
+      </ul>
+      <button (click)="randomizeWeather()" class="uk-button uk-button-large uk-width-1-1 uk-button-primary">Au hasard</button>
+    </div>
+  }
+</div>
