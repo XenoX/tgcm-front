@@ -1,0 +1,49 @@
+<div class="uk-grid uk-grid-small" data-uk-grid uk-sortable="handle: .sortable-icon">
+  <div class="uk-width-1-2@m uk-width-1-1@s">
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small uk-flex-between">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="hash" class="uk-margin-small-right"></i-feather>
+              États (physique) <span *ngIf="totalStates" class="uk-text-small uk-text-muted">({{ totalStates }})</span>
+            </h4>
+          </div>
+          <div>
+            <form class="uk-search uk-search-default">
+              <span uk-search-icon></span>
+              <input class="uk-search-input" type="search" name="search" placeholder="Rechercher" aria-label="Rechercher" [(ngModel)]="stateSearch">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="states" [columns]="stateColumns" (totalItemsEvent)="totalStates = $event" [searchValue]="stateSearch"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-width-1-2@m uk-width-1-1@s">
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small uk-flex-between">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="globe" class="uk-margin-small-right"></i-feather>
+              États (mental) <span *ngIf="totalMoods" class="uk-text-small uk-text-muted">({{ totalMoods }})</span>
+            </h4>
+          </div>
+          <div>
+            <form class="uk-search uk-search-default">
+              <span uk-search-icon></span>
+              <input class="uk-search-input" type="search" name="search" placeholder="Rechercher" aria-label="Rechercher" [(ngModel)]="moodSearch">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="moods" [columns]="moodColumns" (totalItemsEvent)="totalMoods = $event" [searchValue]="moodSearch"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+</div>

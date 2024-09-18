@@ -15,36 +15,37 @@ import {IconsModule} from "../../../../icons/icons.module";
     NgClass,
     IconsModule
   ],
-  templateUrl: './weather-generator.component.html',
+  templateUrl: './weather.component.html',
 })
-export class WeatherGeneratorComponent implements OnInit {
+export class WeatherComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   @Input({transform: booleanAttribute}) withList: boolean = true;
+  @Input({transform: booleanAttribute}) isResponsive: boolean = false;
 
-  weathers: Weather[] = [];
-  currentWeather: Weather | null = null;
+  all: Weather[] = [];
+  current: Weather | null = null;
 
   ngOnInit() {
     this.apiService.get<HydraCollection<Weather>>('/weathers').subscribe(
       data => {
-        this.weathers = data['hydra:member'];
-        this.randomizeWeather();
+        this.all = data['hydra:member'];
+        this.randomize();
       }
     );
   }
 
-  randomizeWeather() {
-    const weather = this.weathers[Math.floor(Math.random() * this.weathers.length)];
-    if (weather.id === this.currentWeather?.id) {
-      this.randomizeWeather();
+  randomize() {
+    const weather = this.all[Math.floor(Math.random() * this.all.length)];
+    if (weather.id === this.current?.id) {
+      this.randomize();
       return;
     }
 
-    this.currentWeather = weather;
+    this.current = weather;
   }
 
-  showWeather(weatherName: string) {
-    this.currentWeather = this.weathers.find(w => w.name === weatherName) || null;
+  show(name: string) {
+    this.current = this.all.find(w => w.name === name) || null;
   }
 }

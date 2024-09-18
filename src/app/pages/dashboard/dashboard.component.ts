@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {TableHydraComponent, TableColumn} from "../../shared/components/table/table-hydra.component";
 import {RouterLink} from "@angular/router";
 import {IconsModule} from "../../icons/icons.module";
-import {WeatherGeneratorComponent} from "../../shared/components/generators/weather/weather-generator.component";
+import {WeatherComponent} from "../../shared/components/generators/weather/weather.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +11,7 @@ import {WeatherGeneratorComponent} from "../../shared/components/generators/weat
     TableHydraComponent,
     RouterLink,
     IconsModule,
-    WeatherGeneratorComponent,
+    WeatherComponent,
   ],
   templateUrl: './dashboard.component.html',
 })
