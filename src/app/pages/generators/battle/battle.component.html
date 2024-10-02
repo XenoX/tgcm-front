@@ -1,0 +1,86 @@
+<div *ngIf="battleMakerTypes" class="uk-grid uk-grid-medium uk-grid-match" data-uk-grid uk-sortable="handle: .sortable">
+  <div *ngFor="let type of battleMakerTypes" class="uk-width-1-1 uk-width-1-2@m uk-width-1-3@xl">
+    <div class="uk-card uk-card-default uk-flex uk-flex-column uk-flex-between">
+      <div class="uk-card-header sortable">
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+          <div class="uk-width-auto">
+            <img [ngStyle]="{'border': '2px solid ' + type.color}" class="uk-border-rounded" width="92" height="92" src="/assets/img/battle_maker_types/{{ type.image }}" alt="{{ type.name }}">
+          </div>
+          <div class="uk-width-expand">
+            <h3 class="uk-card-title uk-margin-small-bottom" [ngStyle]="{'color': type.color}">
+              {{ type.name }}
+              <i-feather name="move" class="uk-float-right uk-text-muted" style="opacity: 0.15"></i-feather>
+            </h3>
+            <p class="uk-text-meta uk-margin-remove-top uk-text-justify">{{ type.description }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="uk-card-body uk-height-medium">
+        <h2 class="uk-text-center">
+          @if (currentByType) {
+            {{ currentByType[type.id].battleMaker.name }}
+          } @else {
+            <app-skeleton-loader width="40%" height="1.2rem" class="uk-align-center"></app-skeleton-loader>
+          }
+        </h2>
+        <p class="uk-text-lead uk-text-muted uk-text-justify">
+          @if (currentByType) {
+            {{ currentByType[type.id].battleMaker.description }}
+          } @else {
+            <app-skeleton-loader height="1.2rem"></app-skeleton-loader>
+            <app-skeleton-loader height="1.2rem"></app-skeleton-loader>
+            <app-skeleton-loader width="80%" height="1.2rem"></app-skeleton-loader>
+          }
+        </p>
+      </div>
+
+      <div class="uk-card-footer uk-flex uk-flex-between">
+        <a (click)="lockBattleMaker(type)">
+          <i-feather name="{{ currentByType[type.id].isLocked ? 'lock' : 'unlock' }}" class="{{ this.currentByType[type.id].isLocked ? 'uk-text-danger' : 'uk-text-muted' }}" uk-tooltip="Verrouiller la valeur"></i-feather>
+        </a>
+        <a (click)="getOneByType(type)">
+          <i-feather name="refresh-cw" uk-tooltip="Rafraîchir"></i-feather>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!battleMakerTypes" class="uk-grid uk-grid-medium uk-grid-match" data-uk-grid uk-sortable="handle: .sortable-icon">
+  <div *ngFor="let i of [1, 2, 3, 4, 5]" class="uk-width-1-2 uk-width-1-3@xl">
+    <div class="uk-card uk-card-default">
+      <div class="uk-card-header">
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+          <div class="uk-width-auto">
+            <app-skeleton-loader type="square" width="92px" height="92px"></app-skeleton-loader>
+          </div>
+          <div class="uk-width-expand">
+            <h3 class="uk-card-title">
+              <app-skeleton-loader width="30%" height="1rem"></app-skeleton-loader>
+            </h3>
+            <p class="uk-text-meta uk-margin-remove-top uk-text-justify">
+              <app-skeleton-loader></app-skeleton-loader>
+              <app-skeleton-loader width="70%"></app-skeleton-loader>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="uk-card-body">
+        <p class="uk-text-lead uk-text-center">
+          <app-skeleton-loader width="30%" height="1.2rem" class="uk-align-center"></app-skeleton-loader>
+        </p>
+        <p class="uk-text-justify">
+          <app-skeleton-loader height="1.2rem"></app-skeleton-loader>
+          <app-skeleton-loader height="1.2rem"></app-skeleton-loader>
+          <app-skeleton-loader width="80%" height="1.2rem"></app-skeleton-loader>
+        </p>
+      </div>
+
+      <div class="uk-card-footer">
+        <i-feather name="refresh-cw" class="uk-text-muted"></i-feather>
+      </div>
+    </div>
+  </div>
+</div>
