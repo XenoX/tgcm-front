@@ -4,6 +4,7 @@ import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {MonstersComponent} from "./pages/database/monsters/monsters.component";
 import {EnvironmentsComponent} from "./pages/generators/environments/environments.component";
 import {StatesComponent} from "./pages/database/states/states.component";
+import {HealthComponent} from './pages/generators/health/health.component';
 
 export const routes: Routes = [
   { path: '', component: DashboardComponent, pathMatch: 'full' },
@@ -11,4 +12,5 @@ export const routes: Routes = [
   { path: 'monsters', component: MonstersComponent, pathMatch: 'full' },
   { path: 'states', component: StatesComponent, pathMatch: 'full' },
   { path: 'environments', component: EnvironmentsComponent, pathMatch: 'full' },
+  { path: 'health', component: HealthComponent, pathMatch: 'full'}
 ];
