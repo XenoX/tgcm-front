@@ -1,8 +1,8 @@
-import {booleanAttribute, Component, Input, OnInit} from '@angular/core';
+import {booleanAttribute, Component, Input} from '@angular/core';
 import {ApiService} from "../../../../services/api.service";
 import {Mood} from '../../../../interfaces/mood';
 import {HydraCollection} from '../../../../interfaces/hydra-collection';
-import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {IconsModule} from "../../../../icons/icons.module";
 
 @Component({
@@ -11,9 +11,8 @@ import {IconsModule} from "../../../../icons/icons.module";
   imports: [
     NgForOf,
     NgIf,
-    NgOptimizedImage,
     NgClass,
-    IconsModule
+    IconsModule,
   ],
   templateUrl: './mood.component.html',
 })
@@ -47,5 +46,4 @@ export class MoodComponent {
   show(name: string) {
     this.current = this.all.find(w => w.name === name) || null;
   }
-
 }
