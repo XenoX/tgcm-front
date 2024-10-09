@@ -23,6 +23,6 @@ export class RiddlesComponents{
 
   riddleColumns: TableColumn[] = [
     { key: 'name', label: 'Nom', link: '@id', classes: 'uk-text-bold', sortable: true },
-    { key: 'difficulty', label: 'Difficulté', sortable: true },
+    { key: 'difficulty', label: 'Difficulté', classes: 'uk-text-capitalize', sortable: true },
   ]
 }
