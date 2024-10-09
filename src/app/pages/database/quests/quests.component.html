@@ -1,0 +1,25 @@
+<div class="uk-grid uk-grid-small" data-uk-grid uk-sortable="handle: .sortable-icon">
+  <div class="uk-width-1-1">
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+      <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small uk-flex-between">
+          <div class="uk-width-auto">
+            <h4>
+              <i-feather name="target" class="uk-margin-small-right"></i-feather>
+              Quêtes <span *ngIf="totalQuests" class="uk-text-small uk-text-muted">({{ totalQuests }})</span>
+            </h4>
+          </div>
+          <div>
+            <form class="uk-search uk-search-default">
+              <span uk-search-icon></span>
+              <input class="uk-search-input" type="search" name="search" placeholder="Rechercher" aria-label="Rechercher" [(ngModel)]="questSearch">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body uk-padding-remove">
+        <app-table-hydra uri="quests" [columns]="questColumns" (totalItemsEvent)="totalQuests = $event" [searchValue]="questSearch"></app-table-hydra>
+      </div>
+    </div>
+  </div>
+</div>
