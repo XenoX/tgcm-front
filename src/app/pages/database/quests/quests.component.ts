@@ -22,6 +22,7 @@ export class QuestsComponent {
 
   questColumns: TableColumn[] = [
     {key: 'name', label: 'Nom', link: '@id', classes: 'uk-text-bold', sortable: true},
-    {key: 'difficulty', label: 'Difficulté', sortable: true},
+    {key: 'description', label: 'Description', classes: 'uk-table-expand uk-text-justify', sortable: true},
+    {key: 'difficulty', label: 'Difficulté', classes: 'uk-text-capitalize', sortable: true},
   ]
 }
